@@ -1,4 +1,51 @@
 from funciones_parcial import *
+
+filename = "bicicletas.csv"
+
+bikers = leer_csv(filename)
+
+mostrar_ciclistas_tabla(bikers)
+
+asignar_tiempos(bikers)
+mostrar_ciclistas_tabla(bikers)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from funciones_parcial import *
 import json
 
 bikes = []

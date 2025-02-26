@@ -1,24 +1,75 @@
-from os import system
-import csv
-import random
+import csv 
 import os
+import random
+from os import system
+
+
+def get_path_actual (filename):
+    directorio_actual = os.path.dirname(__file__)
+    return os.path.join(directorio_actual, filename)
+
+
+
+def leer_csv(filename):
+    bikers = [] 
+    with open (get_path_actual(filename),"r", newline="") as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=',')
+        next(spamreader)
+        for row in spamreader:
+            biker = {
+                "ID": row[0],
+                "nombre": row[1],
+                "tipo":row[2],
+                "tiempo": row[3]
+            }
+            
+            bikers.append(biker)
+    return bikers
+
+
+
+def mostrar_ciclistas_tabla(lista:list):
+    print("                      LISTA DE CICLISTAS")
+    print("ID     Nombre            Tipo        Tiempo")
+    print("------------------------------------------------------------------------")
+    for biker in lista:
+        print(f"{biker["ID"]}    {biker["nombre"]:15}    {biker["tipo"]:10}    {biker["tiempo"]}")
+  
+
+
+def asignar_tiempos(lista):
+    for biker in lista:
+        biker["tiempo"] = random.randint(50,120)
+    return lista
+
+
+def informar_ganador(bikers):
+    ganador = [bikers [0]]
+    for biker in bikers:
+        if biker["tiempo"] <= ganador:
+            pass
 
 
 
 
-def get_path_actual(nombre_archivo):
-    """_summary_
 
-    Args:
-        nombre_archivo (_type_): Nombre del archivo actual
 
-    Returns:
-        _type_: la ubicacion del archivo en el que se trabaja
-    """
-    
-    ubi = os.path.dirname(__file__)
-    
-    return os.path.join(ubi, nombre_archivo)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # ----------------------------------------------------------------
 def cargar_archivo_csv(nombre_archivo_data:str, lista):
